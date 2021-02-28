@@ -1,18 +1,21 @@
 package projects.goodthoughts.option;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Scanner;
-import java.util.Set;
+import projects.goodthoughts.model.Quote;
+import projects.goodthoughts.service.QuoteService;
+
 public class DefaultQuoteOption {
     private static final Logger logger = LoggerFactory.getLogger(DefaultQuoteOption.class);
-
+    private final QuoteService quoteService = new QuoteService();
 
     public static void main(String[] args) {
         DefaultQuoteOption option = new DefaultQuoteOption();
         option.run();
     }
+
     public void run(Object... args) {
-        logger.info("Uruchamianie aplikacji DefaultQuoteOption");
+        logger.info("Uruchamianie opcji DefaultQuoteOption ..");
         showWelcomeMessage();
         while (true) {        // nieskończona pętla
             showMenu();
@@ -29,27 +32,45 @@ public class DefaultQuoteOption {
             }
         }
         showGoodbyeMessage();
-        logger.info("Zakończono pracę aplikacji DefaultQuoteOption");
+        logger.info("Zakończono opcję DefaultQuoteOption");
     }
+
     private void showGoodbyeMessage() {
+        //Nothing
     }
+
     private void showInvalidOptionMassage(String userInput) {
-    }
-    private boolean checkIsExitoption(String userInput) {
-        return true;
-    }
-    private void executeOption(String userInput) {
-        
+        //Nothing
 
     }
-    private boolean validateOption(String userInput) {
-        return  true;
+
+    private boolean checkIsExitoption(String userInput) {
+
+        return true;
     }
+
+    private void executeOption(String userInput) {
+        Quote defoultQuote = quoteService.getDefaultQuote();
+        logger.debug("Probany cytat: {}", defoultQuote);
+
+        System.out.printf("\tCytat na dziś: \"%s\" (%s)%n", defoultQuote.getContent(), defoultQuote.getAuthor());
+
+    }
+
+    private boolean validateOption(String userInput) {
+
+        return true;
+    }
+
     private String getUserInput() {
+
         return "";
     }
+
     private void showMenu() {
+        //Nothing
     }
+
     private void showWelcomeMessage() {
         System.out.println("Pobieram cytat ...");
     }

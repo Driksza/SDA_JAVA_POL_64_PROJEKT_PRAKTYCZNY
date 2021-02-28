@@ -10,7 +10,7 @@ public class Quote {
     private LocalDateTime createOn;
 
     public Quote() {
-        
+
     }
 
     public Quote(String content, String translation, String author, String category, LocalDateTime createOn) {

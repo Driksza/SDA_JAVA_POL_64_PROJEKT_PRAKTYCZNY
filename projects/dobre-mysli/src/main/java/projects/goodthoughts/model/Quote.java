@@ -1,8 +1,17 @@
 package projects.goodthoughts.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "quotes") //, uniqueConstraints = @UniqueConstraint(name = "unigue_quote", columnNames = {"content", "author"}))
 public class Quote {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
     private String content;
     private String translation;
     private String author;
@@ -19,6 +28,10 @@ public class Quote {
         this.author = author;
         this.category = category;
         this.createOn = createOn;
+    }
+    @PrePersist
+    public void setCreatedOn() {
+        this.createOn = LocalDateTime.now();
     }
 
     public String getContent() {
@@ -82,11 +95,20 @@ public class Quote {
     @Override
     public String toString() {
         return "Quote{" +
-                "content='" + content + '\'' +
+                "id=" + id +
+                ", content='" + content + '\'' +
                 ", translation='" + translation + '\'' +
                 ", author='" + author + '\'' +
                 ", category='" + category + '\'' +
                 ", createOn=" + createOn +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
